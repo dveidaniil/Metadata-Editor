@@ -32,14 +32,9 @@ namespace Metadata_Editor
             openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             filename = openFileDialog1.FileName;
             filepath = openFileDialog1.FileName;
-
-
         }
 
         
-
-        
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -50,18 +45,6 @@ namespace Metadata_Editor
                 // label1.Text = filename;
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
