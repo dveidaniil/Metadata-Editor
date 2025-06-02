@@ -17,6 +17,7 @@ namespace Metadata_Editor
         public Form1()
         {
             InitializeComponent();
+            openFileDialog1.Title = "Открыть файл";
             openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); ;
             
         }
