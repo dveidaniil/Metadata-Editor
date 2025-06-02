@@ -15,6 +15,7 @@ namespace Metadata_Editor
         public Form1()
         {
             InitializeComponent();
+            openFileDialog1.Filter = "Все документы(*.*)|*.*";
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -27,6 +28,17 @@ namespace Metadata_Editor
         {
             textBox2.Text = "";
             textBox2.ForeColor = BackColor;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //string filename = openFileDialog1.FileName;
+                //string filetext = System.IO.File.ReadAllText(filename);
+                //label1.Text = filename;
+                
+            }
         }
     }
 }
