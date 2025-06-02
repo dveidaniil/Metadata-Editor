@@ -10,16 +10,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace Metadata_Editor
 {
     public partial class Form1 : Form
     {
+
+        string filename;
+        string filepath;
+        string userName = Environment.UserName;
+
+        DateTime thisDay = DateTime.Today;
+
         public Form1()
         {
             InitializeComponent();
             openFileDialog1.Title = "Открыть файл";
-            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); ;
-            
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            filename = openFileDialog1.FileName;
+            filepath = openFileDialog1.FileName;
+
+
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -38,9 +49,12 @@ namespace Metadata_Editor
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string filename = openFileDialog1.FileName;
-                
-                
+                string filename = Path.GetFileName(openFileDialog1.FileName);
+                string filePath = openFileDialog1.FileName;
+
+                label1.Text = filename;
+
+
             }
         }
 
@@ -62,11 +76,16 @@ namespace Metadata_Editor
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string userName = Environment.UserName;
+            
             textBox1.Text = userName;
             textBox1.ForeColor = Color.Black;
             textBox3.Text = userName;
             textBox3.ForeColor = Color.Black;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
