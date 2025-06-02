@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Metadata_Editor
 {
@@ -15,7 +17,8 @@ namespace Metadata_Editor
         public Form1()
         {
             InitializeComponent();
-            openFileDialog1.Filter = "Все документы(*.*)|*.*";
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); ;
+            
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -34,11 +37,15 @@ namespace Metadata_Editor
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //string filename = openFileDialog1.FileName;
-                //string filetext = System.IO.File.ReadAllText(filename);
-                //label1.Text = filename;
+                string filename = openFileDialog1.FileName;
+                label1.Text = filename;
                 
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
