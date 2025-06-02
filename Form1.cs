@@ -36,17 +36,9 @@ namespace Metadata_Editor
 
         }
 
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            textBox1.ForeColor = Color.Black;
-        }
+        
 
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = "";
-            textBox2.ForeColor = Color.Black;
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -69,26 +61,14 @@ namespace Metadata_Editor
 
         }
 
-        private void textBox3_Click(object sender, EventArgs e)
-        {
-            textBox3.Text = string.Empty;
-            textBox3.ForeColor = BackColor;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-            textBox1.Text = userName;
-            textBox1.ForeColor = Color.Black;
-            textBox3.Text = userName;
-            textBox3.ForeColor = Color.Black;
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
             using (WordprocessingDocument doc = WordprocessingDocument.Open(filepath, true))
             {
                 var packageProps = doc.PackageProperties;
+                var extendedProps = doc.ExtendedFilePropertiesPart.Properties;
 
                 if (packageProps != null)
                 {
@@ -105,7 +85,7 @@ namespace Metadata_Editor
                     TimeSpan editTime = new TimeSpan(0, editMinutes, editSeconds);
 
                     // Дата создания - случайное время в прошлом (до 30 дней)
-                    DateTime created = now.AddDays(-random.Next(1, 31))
+                    DateTime created = now.AddDays(-random.Next(1, 13))
                                        .AddHours(-random.Next(0, 24))
                                        .AddMinutes(-random.Next(0, 60));
 
@@ -121,12 +101,18 @@ namespace Metadata_Editor
                     packageProps.Created = created;
                     packageProps.Modified = modified;
                     packageProps.LastPrinted = lastPrinted;
+                    
 
 
                     // Дополнительные свойства для правдоподобности
                     packageProps.Revision = "1";
                     packageProps.Version = "1";
-                    doc.Save();
+
+                    int totalTimeMinutes = random.Next(23, 64); // Случайное время в минутах (от 1 до 180)
+                    extendedProps.TotalTime.Text = Convert.ToString(totalTimeMinutes); // например, 123 минуты
+                    extendedProps.Save();
+                    
+                    MessageBox.Show("Метаданные успешно изменены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
