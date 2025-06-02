@@ -52,7 +52,7 @@ namespace Metadata_Editor
                 string filename = Path.GetFileName(openFileDialog1.FileName);
                 string filePath = openFileDialog1.FileName;
 
-                label1.Text = filename;
+                
 
 
             }
